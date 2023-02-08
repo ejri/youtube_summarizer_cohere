@@ -27,7 +27,7 @@ def get_video_id_from_video_id_or_url(video_id_or_url):
 
 def get_chunks_from_youtube(video_id):
     # fetch video's transcript
-    # and chunk it into several 10min intervals
+    # and chunk it into several 5min intervals
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
 
     chunks = []
@@ -40,8 +40,8 @@ def get_chunks_from_youtube(video_id):
     for entry in transcript:
         current_timestamp_mins = entry['start'] / 60.0
 
-        # chunk at 10 minutes intervals
-        if current_timestamp_mins - start_timestamp > 10:
+        # chunk at 5 minutes intervals
+        if current_timestamp_mins - start_timestamp > 5:
             # add current chunk to a list of chunks
             chunks.append(current_chunk)
             # then reset the start timestamp
@@ -64,7 +64,7 @@ def summarize_chunk(index, chunk):
     chunk_str = "\n".join(chunk)
     prompt = f"""The following is a section of the transcript of a youtube video. It is section #{index+1}:
     {chunk_str}
-    Summarize this section of the transcript."""
+    Briefly summarize this section of the transcript in 100 characters or less."""
 
     if diagnostics:
         for line in prompt.split('\n'):
@@ -72,8 +72,8 @@ def summarize_chunk(index, chunk):
 
     
     response = co.generate(
-                # model='xlarge'
-                model='command-beta',
+                model='xlarge'
+                # model='command-beta',
                 prompt= prompt,
                 max_tokens=500,
                 temperature=1.8,
@@ -103,7 +103,7 @@ def summarize_the_summaries(summaries):
     for index, summary in enumerate(summaries):
         summaries_str += f"Summary of chunk {index+1}:\n{summary}\n\n"
 
-    prompt = f"""The following are summaries of a youtube video in 10 minute chunks:"
+    prompt = f"""The following are summaries of a youtube video in 5 minute chunks:"
     {summaries_str}
     Summarize the summaries."""
 
@@ -116,8 +116,8 @@ def summarize_the_summaries(summaries):
     while True:
         try:
             response = co.generate(
-                # model='xlarge'
-                model='command-beta',
+                model='xlarge'
+                # model='command-beta',
                 prompt= prompt,
                 max_tokens=500,
                 temperature=1.8,
@@ -191,4 +191,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

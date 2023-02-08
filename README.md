@@ -11,7 +11,7 @@ https://medium.com/@greyboi/summarize-youtube-with-text-davinci-003-fa4d182cc531
 - [x] integrate cohere API
 - [x] track which prompts work, log results 
 - [x] works for any video [which has english transcriptions], and is less that 10mins
-- [ ] works for any video [which has english transcriptions]
+- [x] works for any video [which has english transcriptions]
 - [ ] works for any video [integrate whisper/cohere's language model]
 
 
