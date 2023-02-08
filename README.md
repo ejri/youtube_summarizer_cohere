@@ -1,7 +1,7 @@
 # Youtube Video Summarizer Using Cohere API
 
 Summarize long youtube videos into a few sentences using Cohere API.
-The video transcripts are chunked into 10min intervals, and summarized.
+The video transcripts are chunked into 5min intervals, and summarized.
 Then the summaries are compiled into a summary of the video.
 adapted from this medium article:
 https://medium.com/@greyboi/summarize-youtube-with-text-davinci-003-fa4d182cc531
