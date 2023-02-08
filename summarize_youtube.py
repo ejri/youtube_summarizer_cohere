@@ -72,7 +72,7 @@ def summarize_chunk(index, chunk):
 
     
     response = co.generate(
-                model='xlarge'
+                model='xlarge',
                 # model='command-beta',
                 prompt= prompt,
                 max_tokens=500,
@@ -116,7 +116,7 @@ def summarize_the_summaries(summaries):
     while True:
         try:
             response = co.generate(
-                model='xlarge'
+                model='xlarge',
                 # model='command-beta',
                 prompt= prompt,
                 max_tokens=500,
