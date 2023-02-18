@@ -117,7 +117,7 @@ These dependencies are required to install with the requirements.txt file:
 pip install -r requirements.txt
 ```
 
-3. Run the Streamlit server
+3. Run the app
 
 ```bash
 python3 summarize_youtube_cli.py <link to youtube video>
